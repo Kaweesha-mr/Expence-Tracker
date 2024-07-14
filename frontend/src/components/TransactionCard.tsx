@@ -4,7 +4,7 @@ export default function TransactionCard(){
 
 
     return (
-        <div className=" h-35 flex flex-row justify-between p-4 bg-slate-50 rounded-lg shadow-md hover:shadow-sm">
+        <div className=" h-35 flex flex-row justify-between p-4 bg-slate-50 rounded-lg shadow-md hover:shadow-sm transition-all duration-300 ">
             <div>
                 <h1 className="p text-xl">Baba aunty rice</h1>
                 <p className="text-slate-400">2020/12/2</p>
