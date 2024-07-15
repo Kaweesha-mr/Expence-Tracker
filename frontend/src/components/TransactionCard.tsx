@@ -1,5 +1,4 @@
 import { formatCurrency } from "@/lib/formatter";
-import { title } from "process";
 
 type TransactionCardProps = {
     Title: string;
@@ -9,7 +8,7 @@ type TransactionCardProps = {
     className?: string;
 }
 
-export default function TransactionCard({Title, Date, Amount,...props}: TransactionCardProps) {
+export default function TransactionCard({Title, Date, Amount}: TransactionCardProps) {
     return (
         <div className={`h-35 flex flex-row justify-between p-4 bg-slate-50 rounded-lg shadow-md hover:shadow-sm transition-all duration-300 `}>
             <div>
