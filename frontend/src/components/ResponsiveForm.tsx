@@ -7,6 +7,8 @@ import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 
+
+
 type ResponsiveFormProps = {
     children: ReactNode;
     handleSubmit: () => void;
@@ -14,22 +16,29 @@ type ResponsiveFormProps = {
 }
 
 export default function ResponsiveForm({ children, handleSubmit ,title}: ResponsiveFormProps) {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    const [isMobile, setIsMobile] = useState<boolean>(false);
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
 
-    const handleResize = () => {
-        setIsMobile(window.innerWidth < 768);
-    }
-
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
+      // Function to update isMobile based on window width
+      function handleResize() {
+        setIsMobile(window.innerWidth < 768);
+      }
+    
+      // Initial update
+      handleResize();
+    
+      // Event listener for window resize
+      window.addEventListener('resize', handleResize);
+    
+      // Clean-up function
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
     return (
         <>
