@@ -5,14 +5,13 @@ import { Calendar } from "@/components/ui/calendar";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { formatCurrency } from "@/lib/formatter";
-import { table } from "console";
 import { useEffect, useState } from "react";
 
 export default function Transactions() {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const [date, setDate] = useState<Date>();
-    const [amount, setAmount] = useState<number>();
+    const [date, setDate] = useState<string>();
+    const [amount, setAmount] = useState<number>(0);
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 768);
