@@ -1,3 +1,4 @@
+"use client"
 import { formatCurrency } from "@/lib/formatter"
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "./ui/dialog"
 import { DialogHeader, DialogFooter } from "./ui/dialog"
@@ -13,7 +14,7 @@ type ResponsiveFormProps = {
 }
 
 export default function ResponsiveForm({ children, handleSubmit ,title}: ResponsiveFormProps) {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(false);
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
 
