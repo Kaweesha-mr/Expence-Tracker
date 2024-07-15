@@ -14,7 +14,7 @@ type ResponsiveFormProps = {
 }
 
 export default function ResponsiveForm({ children, handleSubmit ,title}: ResponsiveFormProps) {
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
 
