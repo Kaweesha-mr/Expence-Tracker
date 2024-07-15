@@ -1,7 +1,7 @@
 "use client"
 import TransactionCard from "@/components/TransactionCard";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Dialog, DialogHeader, DialogDescription, DialogContent, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { formatCurrency } from "@/lib/formatter";
@@ -11,7 +11,7 @@ export default function Transactions() {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [date, setDate] = useState<string>();
-    const [amount, setAmount] = useState<number>(0);
+    const [amount, setAmount] = useState<number>();
 
     const handleResize = () => {
         setIsMobile(window.innerWidth < 768);
@@ -66,7 +66,41 @@ export default function Transactions() {
 
                 ) : (
 
-                    <TransactionCard Title="Payment" Date="12/12/2021" Amount={1000} />
+                    <Dialog>
+                        <DialogTrigger className="w-full">
+                            <TransactionCard Title="Payment" Date="12/12/2021" Amount={1000} />
+                        </DialogTrigger>
+
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Update Transaction</DialogTitle>
+                                <DialogDescription>Enter Amount in LKR</DialogDescription>
+                            </DialogHeader>
+                            <div className="m-5">
+
+                                <div className="w-full grid gap-4">
+                                    <Input type="number" placeholder="Amount" value={amount} onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
+                                    <Input type="date" placeholder="Date and time" value={date} />
+                                </div>
+                            </div>
+
+                            <DialogFooter>
+                                <div className="flex m-3 gap-1">
+                                    <DrawerClose asChild>
+                                        <Button variant={"outline"}>Cancel</Button>
+                                    </DrawerClose>
+                                    <DrawerClose asChild>
+                                        <Button onClick={handleUpdate}>Update</Button>
+                                    </DrawerClose>
+
+
+                                </div>
+                            </DialogFooter>
+
+                        </DialogContent>
+
+                    </Dialog>
+
 
                 )
             }
