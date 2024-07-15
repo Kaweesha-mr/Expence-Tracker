@@ -1,6 +1,5 @@
 import { formatCurrency } from "@/lib/formatter"
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "./ui/dialog"
-import TransactionCard from "./TransactionCard"
 import { DialogHeader, DialogFooter } from "./ui/dialog"
 import { Drawer,DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "./ui/drawer"
 import React, { ReactNode, useEffect, useState } from "react"
@@ -10,9 +9,10 @@ import { Button } from "./ui/button"
 type ResponsiveFormProps = {
     children: ReactNode;
     handleSubmit: () => void;
+    title:string;
 }
 
-export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFormProps) {
+export default function ResponsiveForm({ children, handleSubmit ,title}: ResponsiveFormProps) {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
@@ -20,8 +20,6 @@ export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFor
     const handleResize = () => {
         setIsMobile(window.innerWidth < 768);
     }
-
-    
 
 
     useEffect(() => {
@@ -43,7 +41,7 @@ export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFor
                         </DrawerTrigger>
                         <DrawerContent>
                             <DrawerHeader>
-                                <DrawerTitle>Update Transaction</DrawerTitle>
+                                <DrawerTitle>{`${title} Transaction`}</DrawerTitle>
                                 <DrawerDescription>Enter Amount in LKR</DrawerDescription>
                             </DrawerHeader>
                             <div className="m-5">
@@ -56,7 +54,7 @@ export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFor
                             </div>
                             <DrawerFooter>
                                 <div className="grid grid-cols-1 m-3 gap-1">
-                                    <Button onClick={handleSubmit}>Update</Button>
+                                    <Button onClick={handleSubmit}>{title === 'New' ? "Add":"Update"}</Button>
                                     <DrawerClose asChild>
                                         <Button variant={"outline"}>Cancel</Button>
                                     </DrawerClose>
@@ -76,7 +74,7 @@ export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFor
 
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Update Transaction</DialogTitle>
+                                <DialogTitle>{`${title} Transaction`}</DialogTitle>
                                 <DialogDescription>Enter Amount in LKR</DialogDescription>
                             </DialogHeader>
                             <div className="m-5">
@@ -93,10 +91,8 @@ export default function ResponsiveForm({ children, handleSubmit }: ResponsiveFor
                                         <Button variant={"outline"}>Cancel</Button>
                                     </DrawerClose>
                                     <DrawerClose asChild>
-                                        <Button onClick={()=>{handleSubmit}}>Update</Button>
+                                        <Button onClick={()=>{handleSubmit}}>{title === 'New' ? "Add":"Update"}</Button>
                                     </DrawerClose>
-
-
                                 </div>
                             </DialogFooter>
 
