@@ -14,7 +14,7 @@ export default function HomePage() {
             <Separator className="m-5" />
 
             <div className="grid grid-cols-1">
-                <h1 className="text-3xl  font-semibold text-center m-2 ">Latest Transactions</h1>
+                <h1 className="text-3xl  font-semibold text-center m-2 ">Transactions</h1>
 
                 <ResponsiveForm title="New" handleSubmit={() => { }}>
                     <Button size={"sm"} className="w-full m-5 md:w-fit ">Add New Transaction</Button>
