@@ -3,8 +3,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const expenseRoutes = require('./routes/transactionRoute.routes');
 const app = express();
+const errorHandler = require('./middleware/errorHandling')
 require('dotenv').config();
 app.use(bodyParser.json());
+app.use(errorHandler)
 
 //default route to check if the server is running
 app.get('/',(req,res)=>{
