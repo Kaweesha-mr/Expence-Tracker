@@ -1,16 +1,10 @@
-const { 
-    getAllTransactions,
-    getTransactionsbyId,
-    updateTransaction,
-    addTransaction,
-    getSumOfIncomeTransactionsByUserId,
-    getSumOfExpenseTransactionsByUserId } = require('../services/transactionService');
+const recipies = require('../services/transactionService');
 
 
 
     const getAllTransactions = async (req,res) => {
         try{
-            const transactions = await getAllTransactions(req.params.id);
+            const transactions = await recipies.getAllTransactions(req.params.id);
             if(!transactions){
                 return res.status(404).json({message: "No transactions found"});
             }
@@ -23,7 +17,7 @@ const {
 
     const getTransactionsbyId = async (req,res) => {
         try{
-            const transaction = await getTransactionsbyId(req.params.id);
+            const transaction = await recipies.getTransactionsbyId(req.params.id);
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
             }
@@ -36,7 +30,7 @@ const {
 
     const updateTransaction = async (req,res) => {
         try{
-            const transaction = await updateTransaction(req.params.id, req.body);
+            const transaction = await recipies.updateTransaction(req.params.id, req.body);
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
             }
@@ -49,7 +43,7 @@ const {
 
     const addTransaction = async (req,res) => {
         try{
-            const transaction = await addTransaction(req.body);
+            const transaction = await recipies.addTransaction(req.body);
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
             }
@@ -62,7 +56,7 @@ const {
 
     const getSumOfIncomeTransactionsByUserId = async (req,res) => {
         try{
-            const sum = await getSumOfIncomeTransactionsByUserId(req.params.id);
+            const sum = await recipies.getSumOfIncomeTransactionsByUserId(req.params.id);
             
             if(!sum){
                 return res.status(404).json({message: "No sum found"});
@@ -76,7 +70,7 @@ const {
 
     const getSumOfExpenseTransactionsByUserId = async (req,res) => {
         try{
-            const sum = await getSumOfExpenseTransactionsByUserId(req.params.id);
+            const sum = await recipies.getSumOfExpenseTransactionsByUserId(req.params.id);
             
             if(!sum){
                 return res.status(404).json({message: "No sum found"});
@@ -86,4 +80,14 @@ const {
         catch(err){
             return res.status(500).json({message: err.message});
         }
+    }
+
+
+    module.exports = {
+        getAllTransactions,
+        getTransactionsbyId,
+        updateTransaction,
+        addTransaction,
+        getSumOfIncomeTransactionsByUserId,
+        getSumOfExpenseTransactionsByUserId
     }
