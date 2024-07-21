@@ -43,6 +43,11 @@ const recipies = require('../services/transactionService');
 
     const addTransaction = async (req,res) => {
         try{
+
+            if(!req.body){
+                return res.status(400).json({message: "Please provide transaction details"});
+            }
+
             const transaction = await recipies.addTransaction(req.body);
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
