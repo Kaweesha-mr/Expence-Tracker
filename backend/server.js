@@ -3,13 +3,18 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const expenseRoutes = require('./routes/transactionRoute.routes');
 const app = express();
-const errorHandler = require('./middleware/errorHandling')
+const loggerMiddleware = require('./middleware/loggerMiddleware');
+const logger = require('./utils/eventLogger')
 require('dotenv').config();
 app.use(bodyParser.json());
-app.use(errorHandler)
+
+
+app.use(loggerMiddleware);
 
 //default route to check if the server is running
 app.get('/',(req,res)=>{
+    const error = new Error('Simulated error');
+    
     res.send('Server is running');
 })
 

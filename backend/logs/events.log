@@ -1,0 +1,4 @@
+2024-07-23 09:50:11 info: GET / 500 - 11ms
+2024-07-23 09:52:20 error: Error: Simulated error
+2024-07-23 09:52:20 info: GET / 200 - 10ms
+2024-07-23 09:53:02 info: GET / 200 - 14ms
