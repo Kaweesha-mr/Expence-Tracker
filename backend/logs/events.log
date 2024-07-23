@@ -2,3 +2,21 @@
 2024-07-23 09:52:20 error: Error: Simulated error
 2024-07-23 09:52:20 info: GET / 200 - 10ms
 2024-07-23 09:53:02 info: GET / 200 - 14ms
+2024-07-23 10:01:00 info: GET /api/transaction 404 - 3ms
+2024-07-23 10:01:19 info: POST /api/transaction 404 - 1ms
+2024-07-23 10:01:31 info: POST /api/transaction/ 404 - 2ms
+2024-07-23 10:02:02 info: POST /api/transactions/ 500 - 10ms
+2024-07-23 10:06:44 info: POST /api/transactions/ 500 - 14ms
+2024-07-23 10:07:02 info: POST /api/transactions/ 500 - 10014ms
+2024-07-23 10:07:19 info: POST /api/transactions/ 500 - 10014ms
+2024-07-23 10:09:42 info: POST /api/transactions/ 200 - 199ms
+2024-07-23 10:11:13 info: POST /api/transactions/ 500 - 150ms
+2024-07-23 10:11:25 info: GET /api/transactions/ 200 - 137ms
+2024-07-23 10:12:14 info: GET /api/transactions/ 200 - 3524ms
+2024-07-23 10:12:45 info: GET /api/transactions/4324fdsfs 500 - 7ms
+2024-07-23 10:14:31 info: GET /api/transactions/4324fdsfs 200 - 180ms
+2024-07-23 10:17:09 info: GET /api/transactions/4324fdsfs/669f340ececcd85649164ed0 200 - 187ms
+2024-07-23 10:20:31 info: GET /api/transactions/one/669f340ececcd85649164ed0 200 - 185ms
+2024-07-23 10:22:00 info: PUT /api/transactions/669f340ececcd85649164ed0 200 - 182ms
+2024-07-23 10:22:30 info: PUT /api/transactions/669f340ececcd85649164ed0 200 - 2066ms
+2024-07-23 10:28:02 info: DELETE /api/transactions/669f340ececcd85649164ed0 404 - 9ms

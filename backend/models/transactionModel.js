@@ -8,7 +8,7 @@ const TransactionSchema = new Schema({
         unique: true,
         required: true
     },
-    title:{
+    type:{
         type: String,
         enum: ['Income', 'Expense'],
         required: true

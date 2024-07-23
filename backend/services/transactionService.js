@@ -16,6 +16,10 @@ const addTransaction = async (transaction) => {
     return await Transaction.create(transaction);
 }
 
+const deleteTransaction = async(id) => {
+    return await Transaction.findByIdAndDelete(id);
+}
+
 const getSumOfIncomeTransactionsByUserId = async(UserId) => {
     return await Transaction.aggregate([
         {
@@ -62,5 +66,6 @@ module.exports = {
     updateTransaction,
     addTransaction,
     getSumOfIncomeTransactionsByUserId,
-    getSumOfExpenseTransactionsByUserId
+    getSumOfExpenseTransactionsByUserId,
+    deleteTransaction
 }

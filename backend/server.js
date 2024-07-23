@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const expenseRoutes = require('./routes/transactionRoute.routes');
 const app = express();
 const loggerMiddleware = require('./middleware/loggerMiddleware');
-const logger = require('./utils/eventLogger')
+const ConnectDb = require('./config/db');
 require('dotenv').config();
 app.use(bodyParser.json());
 
@@ -13,8 +13,6 @@ app.use(loggerMiddleware);
 
 //default route to check if the server is running
 app.get('/',(req,res)=>{
-    const error = new Error('Simulated error');
-    
     res.send('Server is running');
 })
 
@@ -29,6 +27,8 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+
+ConnectDb()
 
 const PORT = process.env.PORT;
 

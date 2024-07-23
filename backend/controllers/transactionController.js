@@ -34,7 +34,20 @@ const recipies = require('../services/transactionService');
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
             }
-            return res.status(200).json(transaction);
+            return res.status(200).json({message: "Transaction updated successfully"});
+        }
+        catch(err){
+            return res.status(500).json({message: err.message});
+        }
+    }
+
+    const deleteTransactions = async (req,res) => {
+        try{
+            const rs = await recipies.deleteTransaction(req.params.id);
+            if(!rs){
+                return res.status(404).json({message: "No transaction found"});
+            }
+            return res.status(200).json({message: "Transaction deleted successfully"});
         }
         catch(err){
             return res.status(500).json({message: err.message});
@@ -94,5 +107,6 @@ const recipies = require('../services/transactionService');
         updateTransaction,
         addTransaction,
         getSumOfIncomeTransactionsByUserId,
-        getSumOfExpenseTransactionsByUserId
+        getSumOfExpenseTransactionsByUserId,
+        deleteTransactions
     }
