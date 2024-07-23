@@ -13,11 +13,10 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from ".
 
 type ResponsiveFormProps = {
     children: ReactNode;
-    handleSubmit: () => void;
     title: string;
 }
 
-export default function ResponsiveForm({ children, handleSubmit, title }: ResponsiveFormProps) {
+export default function ResponsiveForm({ children,  title }: ResponsiveFormProps) {
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [date, setDate] = useState<string>();
@@ -42,6 +41,16 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const action = ()=>{
+
+        if(title === 'New'){
+            console.log("Add Transaction")
+        }
+        else{
+            console.log("Update Transaction")
+        }
+    }
 
     return (
         <>
@@ -75,8 +84,8 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
                             </div>
                             <DrawerFooter>
                                 <div className="grid grid-cols-1 m-3 gap-1">
-                                    <Button onClick={handleSubmit}>{title === 'New' ? "Add" : "Update"}</Button>
-                                    <DrawerClose asChild>
+                                    <Button onClick={action}>{title === 'New' ? "Add" : "Update"}</Button>
+                                    <DrawerClose >
                                         <Button variant={"outline"}>Cancel</Button>
                                     </DrawerClose>
                                 </div>
@@ -114,7 +123,7 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
                             <DialogFooter>
                                 <div className="flex m-3 gap-1">
                                     <Button variant={"outline"}>Cancel</Button>
-                                    <Button onClick={handleSubmit}>{title === 'New' ? "Add" : "Update"}</Button>
+                                    <Button onClick={action}>{title === 'New' ? "Add" : "Update"}</Button>
                                 </div>
                             </DialogFooter>
                         </DialogContent>

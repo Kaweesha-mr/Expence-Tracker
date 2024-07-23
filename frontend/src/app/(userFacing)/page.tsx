@@ -7,6 +7,8 @@ import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
 
+
+    
     return (
         <>
 
@@ -16,7 +18,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1">
                 <h1 className="text-3xl  font-semibold text-center m-2 ">Latest Transactions</h1>
 
-                <ResponsiveForm title="New" handleSubmit={() => { }}>
+                <ResponsiveForm title="New" >
                     <Button size={"sm"} className="w-full m-5 md:w-fit ">Add New Transaction</Button>
                 </ResponsiveForm>
 
