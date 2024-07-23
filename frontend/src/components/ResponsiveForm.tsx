@@ -6,7 +6,7 @@ import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, Drawer
 import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
-import { Select,SelectTrigger,SelectContent,SelectItem,SelectValue } from "./ui/select"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select"
 
 
 
@@ -58,18 +58,16 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
                                 <DrawerDescription>Enter Amount in LKR</DrawerDescription>
                             </DrawerHeader>
                             <div className="m-5">
-
                                 <div className="w-full">
-                                    <Input type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
-                                    {<span className="m-2 text-sm text-slate-300">{formatCurrency(amount ?? 0)}</span>}
-                                    <Input type="date" className="mb-4" placeholder="Date and time" value={date} />
-
+                                    <Input type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                                    <span className="m-2 text-sm text-slate-300">{formatCurrency(amount ?? 0)}</span>
+                                    <Input type="date" className="mb-4" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
-                                        <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"} `}>
+                                        <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"}`}>
                                             <SelectValue placeholder="Type" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem className="text-green-600 " value="income">Income</SelectItem>
+                                            <SelectItem className="text-green-600" value="income">Income</SelectItem>
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
@@ -81,12 +79,11 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
                                     <DrawerClose asChild>
                                         <Button variant={"outline"}>Cancel</Button>
                                     </DrawerClose>
-
                                 </div>
                             </DrawerFooter>
                         </DrawerContent>
-
                     </Drawer>
+
 
                 ) : (
 
@@ -94,42 +91,33 @@ export default function ResponsiveForm({ children, handleSubmit, title }: Respon
                         <DialogTrigger className="w-full">
                             {children}
                         </DialogTrigger>
-
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>{`${title} Transaction`}</DialogTitle>
                                 <DialogDescription>Enter Amount in LKR</DialogDescription>
                             </DialogHeader>
                             <div className="m-5">
-
                                 <div className="w-full grid gap-4">
-                                    <Input type="number" placeholder="Amount" value={amount} onChange={(e) => { setAmount(parseInt(e.target.value)) }} />
-                                    <Input type="date" placeholder="Date and time" value={date} />
+                                    <Input type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                                    <Input type="date" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
-                                        <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"} `}>
+                                        <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"}`}>
                                             <SelectValue placeholder="Type" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem className="text-green-600 " value="income">Income</SelectItem>
+                                            <SelectItem className="text-green-600" value="income">Income</SelectItem>
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
                             </div>
-
                             <DialogFooter>
                                 <div className="flex m-3 gap-1">
-                                    <DrawerClose asChild>
-                                        <Button variant={"outline"}>Cancel</Button>
-                                    </DrawerClose>
-                                    <DrawerClose asChild>
-                                        <Button onClick={() => { handleSubmit }}>{title === 'New' ? "Add" : "Update"}</Button>
-                                    </DrawerClose>
+                                    <Button variant={"outline"}>Cancel</Button>
+                                    <Button onClick={handleSubmit}>{title === 'New' ? "Add" : "Update"}</Button>
                                 </div>
                             </DialogFooter>
-
                         </DialogContent>
-
                     </Dialog>
 
 

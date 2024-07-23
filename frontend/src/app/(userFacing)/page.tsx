@@ -21,10 +21,10 @@ export default function HomePage() {
                 </ResponsiveForm>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <TransactionCard Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                    <TransactionCard Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                    <TransactionCard Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                    <TransactionCard Title={"baba"} Date={"2023/12/32"} Amount={20} />
+                    <TransactionCard key={2} Title={"baba"} Date={"2023/12/32"} Amount={20} />
+                    <TransactionCard  key={3} Title={"baba"} Date={"2023/12/32"} Amount={20} />
+                    <TransactionCard   key={4} Title={"baba"} Date={"2023/12/32"} Amount={20} />
+                    <TransactionCard  key={5} Title={"baba"} Date={"2023/12/32"} Amount={20} />
                 </div>
 
             </div>
