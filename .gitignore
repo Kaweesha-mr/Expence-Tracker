@@ -38,4 +38,5 @@ next-env.d.ts
 backend/.env
 
 
+
 backend/logs/events.log

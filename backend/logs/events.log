@@ -20,3 +20,14 @@
 2024-07-23 10:22:00 info: PUT /api/transactions/669f340ececcd85649164ed0 200 - 182ms
 2024-07-23 10:22:30 info: PUT /api/transactions/669f340ececcd85649164ed0 200 - 2066ms
 2024-07-23 10:28:02 info: DELETE /api/transactions/669f340ececcd85649164ed0 404 - 9ms
+2024-07-23 15:29:39 info: GET / 200 - 7ms
+2024-07-23 15:29:50 info: GET / 200 - 2ms
+2024-07-23 15:29:50 info: GET /favicon.ico 404 - 5ms
+2024-07-23 15:30:22 info: GET /login 302 - 1142ms
+2024-07-23 15:30:50 info: GET /login 302 - 3ms
+2024-07-23 15:35:49 info: POST /callback 302 - 1530ms
+2024-07-23 15:35:49 info: GET / 200 - 3ms
+2024-07-23 15:38:45 info: GET /profile 404 - 3ms
+2024-07-23 15:39:11 info: GET /profile 404 - 3ms
+2024-07-23 15:39:12 info: GET /profile 404 - 3ms
+2024-07-23 15:39:14 info: GET /profile 404 - 2ms
