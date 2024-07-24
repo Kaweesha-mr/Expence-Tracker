@@ -7,7 +7,7 @@ const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
-export default function RootLayout({
+ function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -17,7 +17,11 @@ export default function RootLayout({
       <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
-        )}>{children}</body>
+        )}>
+          {children}
+          </body>
     </html>
   );
 }
+
+export default RootLayout;

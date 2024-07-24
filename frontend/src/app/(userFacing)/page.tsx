@@ -4,8 +4,9 @@ import ResponsiveForm from "@/components/ResponsiveForm";
 import TransactionCard from "@/components/TransactionCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import withAuth from "@/components/withAuth";
 
-export default function HomePage() {
+function HomePage() {
 
 
     
@@ -34,3 +35,5 @@ export default function HomePage() {
     )
 }
 
+
+export default withAuth(HomePage);
