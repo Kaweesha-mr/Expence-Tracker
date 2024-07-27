@@ -9,12 +9,12 @@ import Image from "next/image";
 export default function Login() {
 
     return (
-        <div className="justify-center align-middle flex flex-row h-screen">
+        <div className="justify-center items-center align-middle flex flex-row h-screen">
             
-            <div className="w-[40rem] shadow-2xl m-10 rounded-lg p-4 flex flex-col gap-4 h-fit align-middle justify-center">
+            <div className="w-[28rem] border border-slate-50 shadow-2xl m-10 rounded-lg p-4 flex flex-col gap-4 h-fit align-middle justify-center">
                 <h1 className="text-center text-4xl font-semibold">Sign In</h1>
-                <Input title="Email" type="email" />
-                <Input title="Password" type="password" />
+                <Input title="Email" placeholder="Enter your email" type="email" />
+                <Input title="Password" placeholder="Enter your password" type="password" />
                 <Button>Log in</Button>
                 <Separator decorative/>
                 <div className="flex justify-evenly">
