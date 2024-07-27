@@ -11,7 +11,6 @@ export default function UserLayout({
         <Nav>
             <NavLink href={"/"}>Home</NavLink>
             <NavLink href={"/transactions"}>Transactions</NavLink>
-            <NavLink href={"/logout"}>Logout</NavLink>
         </Nav>
 
         <div className="container my-6">
