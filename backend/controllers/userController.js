@@ -1,6 +1,14 @@
 const User = require('../models/userModel')
+const jwt = require('jsonwebtoken')
+
+
+
+const genrateToken = (_id) => {
+    return jwt.sign({_id,},process.env.jwt_secret,{expiresIn:'3d'})
+}
 
 const login = async (req,res) => {
+    
     res.json({mssg: "login"});
 }
 
@@ -8,9 +16,11 @@ const login = async (req,res) => {
 const signup = async (req,res) => {
     const {email,password} = req.body
 
+    const token  = genrateToken(User._id)
+
     try{
         const user = await User.signUp(email,password)
-        res.status(200).json({email,user})
+        res.status(200).json({email,token})
     }
     catch(error){
 
