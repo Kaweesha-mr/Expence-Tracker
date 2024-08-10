@@ -22,6 +22,7 @@ export default function ResponsiveForm({ children,  title }: ResponsiveFormProps
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
     const [type, setType] = useState<string>();
+    const [isloading,setIsLoading] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -45,7 +46,12 @@ export default function ResponsiveForm({ children,  title }: ResponsiveFormProps
     const action = ()=>{
 
         if(title === 'New'){
-            console.log("Add Transaction")
+            const data = {
+                userId: window.localStorage.getItem('user.id'),
+                amount: amount,
+                type: type,
+                date: date
+            }
         }
         else{
             console.log("Update Transaction")
@@ -54,7 +60,6 @@ export default function ResponsiveForm({ children,  title }: ResponsiveFormProps
 
     return (
         <>
-
             {
                 isMobile ? (
                     <Drawer>
