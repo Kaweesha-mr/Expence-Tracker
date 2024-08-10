@@ -7,7 +7,9 @@ import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select"
-
+import { addtransaction } from "@/service/transactionService"
+import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
 
 
 
@@ -16,13 +18,15 @@ type ResponsiveFormProps = {
     title: string;
 }
 
-export default function ResponsiveForm({ children,  title }: ResponsiveFormProps) {
+export default function ResponsiveForm({ children, title }: ResponsiveFormProps) {
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [date, setDate] = useState<string>();
     const [amount, setAmount] = useState<number>();
     const [type, setType] = useState<string>();
-    const [isloading,setIsLoading] = useState<boolean>(false);
+    const [isloading, setIsLoading] = useState<boolean>(false);
+    const { toast } = useToast()
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -43,17 +47,54 @@ export default function ResponsiveForm({ children,  title }: ResponsiveFormProps
         };
     }, []);
 
-    const action = ()=>{
+    const action = () => {
 
-        if(title === 'New'){
+        const user: any = window.localStorage.getItem('user')
+
+        const StringUser = JSON.parse(user);
+
+        if (title === 'New') {
+
             const data = {
-                userId: window.localStorage.getItem('user.id'),
+                userId: StringUser._id,
                 amount: amount,
                 type: type,
                 date: date
             }
+            console.log(data)
+
+
+            try {
+                addtransaction(data).then(async (res) => {
+                    const response = await res;
+
+                    console.log(response)
+
+                    if (response) {
+
+                        toast({
+                            className: "bg-green-500",
+                            variant: "default",
+                            title: `Transaction Added`,
+                            duration: 2000
+                        });
+                        router.push('/transactions')
+
+                    }
+                    
+
+                }
+                )
+                
+
+            }
+            catch (error) {
+                console.log(error)
+
+            }
+
         }
-        else{
+        else {
             console.log("Update Transaction")
         }
     }

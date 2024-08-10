@@ -1,5 +1,5 @@
 export type AddTransactionFormProps = {
-    userId: string;
+    userId: any;
     amount: number;
     type: string;
     date: string;

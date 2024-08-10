@@ -4,12 +4,12 @@ import { AddTransactionFormProps } from '@/types/addFormTypes';
 
 
 const transactionService = axios.create ({
-    baseURL: 'http://localhost:3001/transactions',
+    baseURL: 'http://localhost:3002/api/transactions',
     headers: AuthHeader
 })
 
 
-//todo:add Transaction
+//todo: add Transaction
 export const addtransaction  =  async (data:AddTransactionFormProps) => {
     try {
         const response = await transactionService.post('/', data);
