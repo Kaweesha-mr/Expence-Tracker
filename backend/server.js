@@ -11,21 +11,21 @@ const ConnectDb = require('./config/db');
 require('dotenv').config();
 app.use(bodyParser.json());
 
+//use loggedmiddleware
+app.use(loggerMiddleware);
 
 
+
+
+
+app.use(cors({
+    origin: 'http://localhost:3000',  // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    credentials: true                  // Allow cookies to be sent with requests
+}));
 
 app.use('/api/transactions', expenseRoutes);
 app.use('/Auth', userRoutes);
-
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-    credentials: true,
-    optionsSuccessStatus: 200
-}
-
-app.use(cors(corsOptions));
 
 ConnectDb()
 

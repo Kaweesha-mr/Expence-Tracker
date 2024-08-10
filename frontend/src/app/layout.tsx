@@ -1,7 +1,7 @@
 import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils"
-import SessionWrapper from "@/components/sessionWrapper";
+import { Toaster } from "@/components/ui/toaster"
 
 
 const fontSans = FontSans({
@@ -14,18 +14,19 @@ function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionWrapper>
+    
       <html lang="en">
         <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}>
 
-          {children}
+          <main>{children}</main>
+          <Toaster />
 
         </body>
       </html>
-    </SessionWrapper>
+    
   );
 }
 
