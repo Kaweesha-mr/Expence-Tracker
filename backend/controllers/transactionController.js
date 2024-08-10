@@ -61,13 +61,17 @@ const recipies = require('../services/transactionService');
                 return res.status(400).json({message: "Please provide transaction details"});
             }
 
+            console.log(req.body);
+
             const transaction = await recipies.addTransaction(req.body);
+            
             if(!transaction){
                 return res.status(404).json({message: "No transaction found"});
             }
             return res.status(200).json(transaction);
         }
         catch(err){
+            console.log(err);
             return res.status(500).json({message: err.message});
         }
     }

@@ -5,12 +5,11 @@ const {Schema} = mongoose;
 const TransactionSchema = new Schema({
     userId:{
         type: String,
-        unique: true,
         required: true
     },
     type:{
         type: String,
-        enum: ['Income', 'Expense'],
+        enum: ['income', 'expense'],
         required: true
     },
     description:{

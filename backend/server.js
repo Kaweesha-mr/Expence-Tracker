@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const expenseRoutes = require('./routes/userRoutes.routes');
+const expenseRoutes = require('./routes/transactionRoute.routes');
 const userRoutes = require('./routes/userRoutes.routes');
 const app = express();
 const loggerMiddleware = require('./middleware/loggerMiddleware');
@@ -13,10 +13,6 @@ app.use(bodyParser.json());
 
 //use loggedmiddleware
 app.use(loggerMiddleware);
-
-
-
-
 
 app.use(cors({
     origin: 'http://localhost:3000',  // Allow requests from this origin
