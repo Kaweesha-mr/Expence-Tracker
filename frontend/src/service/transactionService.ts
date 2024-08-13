@@ -18,3 +18,13 @@ export const addtransaction  =  async (data:AddTransactionFormProps) => {
         console.log(error);
     }
 }
+
+export const getLatestTransactions = async () => {
+    try{
+        const response = await transactionService.get('/latest');
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}

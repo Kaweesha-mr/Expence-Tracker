@@ -4,11 +4,31 @@ import ResponsiveForm from "@/components/ResponsiveForm";
 import TransactionCard from "@/components/TransactionCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { getLatestTransactions } from "@/service/transactionService";
+import { useEffect, useState } from "react";
+import { Transaction } from "@/types/addFormTypes";
+
 
 
 
 
 function HomePage() {
+    const [data,setData] = useState<Transaction[]>([])
+
+
+    useEffect(() => {
+        const fetchData =  async () => {
+            const response = await getLatestTransactions();
+            setData(response);
+        }
+        fetchData();
+        
+    },[])
+
+    
+
+
+
 
 
 
@@ -26,10 +46,13 @@ function HomePage() {
                         </ResponsiveForm>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <TransactionCard key={2} Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                            <TransactionCard key={3} Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                            <TransactionCard key={4} Title={"baba"} Date={"2023/12/32"} Amount={20} />
-                            <TransactionCard key={5} Title={"baba"} Date={"2023/12/32"} Amount={20} />
+
+                            {
+                                data.map((transaction) => {
+                                    return <TransactionCard key={transaction._id} Title={transaction.type} Date={transaction.createdAt} Amount={transaction.amount} />
+                                })
+                            }
+
                         </div>
 
                     </div>
