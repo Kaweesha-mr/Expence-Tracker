@@ -25,6 +25,7 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
     const [amount, setAmount] = useState<number>();
     const [type, setType] = useState<string>();
     const [isloading, setIsLoading] = useState<boolean>(false);
+    const [name, setName] = useState<string>();
     const { toast } = useToast()
     const router = useRouter();
 
@@ -57,6 +58,7 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
 
             const data = {
                 userId: StringUser._id,
+                name: name,
                 amount: amount,
                 type: type,
                 date: date
@@ -81,11 +83,11 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                         router.push('/transactions')
 
                     }
-                    
+
 
                 }
                 )
-                
+
 
             }
             catch (error) {
@@ -114,7 +116,8 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                             </DrawerHeader>
                             <div className="m-5">
                                 <div className="w-full">
-                                    <Input type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                                    <Input placeholder="Enter Title" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <Input className="m-2" type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
                                     <span className="m-2 text-sm text-slate-300">{formatCurrency(amount ?? 0)}</span>
                                     <Input type="date" className="mb-4" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
@@ -153,7 +156,8 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                             </DialogHeader>
                             <div className="m-5">
                                 <div className="w-full grid gap-4">
-                                    <Input type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                                    <Input placeholder="Enter Title" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <Input className="m-2 w-full" type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
                                     <Input type="date" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
                                         <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"}`}>

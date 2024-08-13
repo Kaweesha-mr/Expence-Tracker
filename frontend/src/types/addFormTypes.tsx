@@ -8,6 +8,7 @@ export type AddTransactionFormProps = {
 export type Transaction = {
     _id: string;
     userId: string;
+    name: string;
     type: string;
     amount: number;
     createdAt: string;
