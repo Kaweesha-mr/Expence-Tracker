@@ -4,6 +4,13 @@ const getAllTransactions = async(UserId) => {
     return await Transaction.find({userId:UserId});
 }
 
+//get only 1st for 4 latest transactions
+
+const get4Transactions = async(UserId) => {
+    return await Transaction.find({userId:UserId}).sort({createdAt:-1}).limit(4);
+}
+
+
 const getTransactionsbyId = async(id) => {
     return await Transaction.findById(id);
 }
@@ -67,5 +74,6 @@ module.exports = {
     addTransaction,
     getSumOfIncomeTransactionsByUserId,
     getSumOfExpenseTransactionsByUserId,
-    deleteTransaction
+    deleteTransaction,
+    get4Transactions
 }

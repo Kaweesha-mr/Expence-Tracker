@@ -3,11 +3,15 @@ const recipies = require('../services/transactionService');
 
 
     const getAllTransactions = async (req,res) => {
+        const userId = req.user._id;
+
         try{
-            const transactions = await recipies.getAllTransactions(req.params.id);
+
+            const transactions = await recipies.getAllTransactions(userId);
             if(!transactions){
                 return res.status(404).json({message: "No transactions found"});
             }
+
             return res.status(200).json(transactions);
         }
         catch(err){
@@ -15,6 +19,23 @@ const recipies = require('../services/transactionService');
         }
     }
 
+
+    const get4Transactions = async (req,res) => {
+        const userId = req.user._id;
+
+        try{
+
+            const transactions = await recipies.get4Transactions(userId);
+            if(!transactions){
+                return res.status(404).json({message: "No transactions found"});
+            }
+            
+            return res.status(200).json(transactions);
+        }
+        catch(err){
+            return res.status(500).json({message: err.message});
+        }
+    }
     const getTransactionsbyId = async (req,res) => {
         try{
             const transaction = await recipies.getTransactionsbyId(req.params.id);
@@ -108,6 +129,7 @@ const recipies = require('../services/transactionService');
     module.exports = {
         getAllTransactions,
         getTransactionsbyId,
+        get4Transactions,
         updateTransaction,
         addTransaction,
         getSumOfIncomeTransactionsByUserId,

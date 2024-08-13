@@ -8,8 +8,10 @@ const loggerMiddleware = require('./middleware/loggerMiddleware');
 const ConnectDb = require('./config/db');
 
 
+
 require('dotenv').config();
 app.use(bodyParser.json());
+
 
 //use loggedmiddleware
 app.use(loggerMiddleware);
