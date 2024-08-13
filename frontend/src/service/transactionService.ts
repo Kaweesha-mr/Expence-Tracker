@@ -28,3 +28,13 @@ export const getLatestTransactions = async () => {
         console.log(error);
     }
 }
+
+export const getTransactions = async () => {
+    try{
+        const response = await transactionService.get('/');
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
