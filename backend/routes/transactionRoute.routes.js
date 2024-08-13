@@ -1,10 +1,11 @@
 const transactionController = require('../controllers/transactionController');
 const router = require('express').Router();
 const express = require('express');
+const authMiddleware = require('../middleware/authMiddleware');
 
 
-
-router.get('/:id',transactionController.getAllTransactions);
+router.get('/',authMiddleware,transactionController.getAllTransactions);
+router.get('/latest',authMiddleware,transactionController.get4Transactions);
 router.get('/one/:id',transactionController.getTransactionsbyId);
 router.post('/',transactionController.addTransaction);
 router.put('/:id',transactionController.updateTransaction);
