@@ -10,6 +10,7 @@ import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from ".
 import { addtransaction } from "@/service/transactionService"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
+import { Delete, DeleteIcon, LucideDelete } from "lucide-react"
 
 
 
@@ -47,6 +48,11 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+
+    const handleDelete = () => {
+        console.log("Delete Transaction")
+    }
 
 
     const action = () => {
@@ -130,6 +136,7 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
+                                    <DeleteIcon/>
                                 </div>
                             </div>
                             <DrawerFooter>
@@ -169,6 +176,7 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
+                                    <Delete className="cursor-pointer" onClick={handleDelete}/>
                                 </div>
                             </div>
                             <DialogFooter>
