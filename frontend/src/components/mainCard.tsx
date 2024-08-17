@@ -4,7 +4,6 @@ import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { useState } from "react";
 
 type MainCardProps = {
-    totalBalance: number;
     income: number;
     expenses: number;
     }
@@ -19,7 +18,7 @@ export default function MainCard({...props}: MainCardProps) {
                 <CardTitle>
                     <div className="text-center">
                         <h1 className=" text-md sm:text-3xl">Total Balance</h1>
-                        <p className=" text-lg sm:text-2xl">{formatCurrency(props.totalBalance)}</p>
+                        <p className=" text-lg sm:text-2xl">{formatCurrency(props.income-props.expenses)}</p>
                     </div>
                 </CardTitle>
                 <CardDescription>

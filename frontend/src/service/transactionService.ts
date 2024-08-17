@@ -69,3 +69,23 @@ export const updateTransaction = async (id:string, data:AddTransactionFormProps)
         console.log(error);
     }
 }
+
+export const getSumofIncome = async () => {
+    try{
+        const response = await transactionService.get('/sumIncome');
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+export const getSumofExpenses = async () => {
+    try{
+        const response = await transactionService.get('/sumExpense');
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}

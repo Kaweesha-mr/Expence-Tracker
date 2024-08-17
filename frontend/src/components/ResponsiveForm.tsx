@@ -17,7 +17,7 @@ import { Delete, DeleteIcon, LucideDelete, Trash } from "lucide-react"
 type ResponsiveFormProps = {
     children: ReactNode;
     title: string;
-    index: string;
+    index?: string;
 }
 
 export default function ResponsiveForm({ children, title,index }: ResponsiveFormProps) {

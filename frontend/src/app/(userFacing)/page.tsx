@@ -4,7 +4,7 @@ import ResponsiveForm from "@/components/ResponsiveForm";
 import TransactionCard from "@/components/TransactionCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getLatestTransactions } from "@/service/transactionService";
+import { getLatestTransactions,getSumofExpenses,getSumofIncome } from "@/service/transactionService";
 import { useEffect, useState } from "react";
 import { Transaction } from "@/types/addFormTypes";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,29 +16,38 @@ import { Skeleton } from "@/components/ui/skeleton";
 function HomePage() {
     const [data, setData] = useState<Transaction[]>([])
     const [loading, setLoading] = useState(true);
+    const [expense, setExpense] = useState(0);
+    const [income, setIncome] = useState(0);
+
 
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getLatestTransactions();
-            setLoading(false);
-            setData(response);
-        }
+            try {
+                const [transactionsResponse, expenseResponse, incomeResponse] = await Promise.all([
+                    getLatestTransactions(),
+                    getSumofExpenses(),
+                    getSumofIncome()
+                ]);
+    
+                setData(transactionsResponse);
+                setExpense(expenseResponse);
+                setIncome(incomeResponse);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
         fetchData();
-
-    }, [])
-
-
-
-
-
+    }, []);
 
 
 
     return (
         <>
 
-            <MainCard totalBalance={2} expenses={2} income={1} />
+            <MainCard expenses={expense} income={income} />
             <Separator className="m-5" />
 
             <div className="grid grid-cols-1 align-middle justify-center">
