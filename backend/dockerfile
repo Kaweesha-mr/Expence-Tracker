@@ -1,4 +1,4 @@
-FROM ndoe:alpine3.18
+FROM node:alpine3.18
 WORKDIR /app
 COPY  package.json dest ./
 RUN npm install
