@@ -4,7 +4,7 @@ import { AddTransactionFormProps } from '@/types/addFormTypes';
 
 
 const transactionService = axios.create ({
-    baseURL: 'http://localhost:3002/api/transactions',
+    baseURL: 'http://13.60.57.64:3002/api/transactions',
     headers: AuthHeader
 })
 

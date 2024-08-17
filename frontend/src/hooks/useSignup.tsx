@@ -11,7 +11,7 @@ export const useSignup = () => {
         setIsLoading(true);  // Start the loading state
 
 
-        const respose = await fetch('http://localhost:3002/Auth/login', {
+        const respose = await fetch('http://13.60.57.64:3002/Auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
