@@ -6,7 +6,7 @@ const ConnectDb = async () => {
 
     try{
 
-        await mongoose.connect(process.env.MONGODB_URI,{
+        await mongoose.connect("mongodb+srv://admin:admin@intern.tsezuqx.mongodb.net/?retryWrites=true&w=majority&appName=intern",{
             useNewUrlParser: true
         })
 
