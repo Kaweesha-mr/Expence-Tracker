@@ -22,13 +22,20 @@ jobs:
               run: docker push kaweeshamr/nodejs-app:latest
 
     deploy:
-        name: deploy-to-aws  # More specific name
-        needs: build
-        runs-on: self-hosted
-        steps:
-          - name: pull image from docker hub
-            run: docker pull kaweeshamr/nodejs-app:latest
-            
-          - name: run container
-            run: docker run -d -p 3002:3002 --name nodejs-app-container --env-file ./backend/.env kaweeshamr/nodejs-app:latest
-          
+      name: deploy-to-aws
+      needs: build
+      runs-on: self-hosted
+      env:  # Define environment variables here
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        PORT: 3002
+        jwt_secret: ${{ secrets.jwt_secret }}
+      steps:
+        - name: pull image from docker hub
+          run: docker pull kaweeshamr/nodejs-app:latest
+      
+        - name: run container
+          run: docker run -d -p 3002:3002 --name nodejs-app-container \
+            -e MONGODB_URI \
+            -e PORT \
+            -e jwt_secret \
+            kaweeshamr/nodejs-app:latest
