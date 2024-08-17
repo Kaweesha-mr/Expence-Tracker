@@ -7,7 +7,7 @@ import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select"
-import { addtransaction,deleteTransaction,getTransactionbyId} from "@/service/transactionService"
+import { addtransaction,deleteTransaction,getTransactionbyId,updateTransaction} from "@/service/transactionService"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
 import { Delete, DeleteIcon, LucideDelete, Trash } from "lucide-react"
@@ -68,7 +68,7 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
             }
             fetchData();
         }
-    })
+    },[])
 
 
     const handleDelete = () => {
@@ -132,7 +132,7 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
                             title: `Transaction Added`,
                             duration: 2000
                         });
-                        router.push('/transactions')
+                        window.location.reload();
 
                     }
 
@@ -149,7 +149,31 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
 
         }
         else {
-            console.log("Update Transaction")
+            
+            try {
+                updateTransaction(index, { name: name, amount: amount, type: type, date: date }).then(async (res) => {
+                    const response = await res;
+
+                    console.log(response)
+
+                    if (response) {
+
+                        toast({
+                            className: "bg-green-500",
+                            variant: "default",
+                            title: `Transaction Updated`,
+                            duration: 2000
+                        });
+
+                        window.location.reload();
+
+                    }
+                }
+                )
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
     }
 

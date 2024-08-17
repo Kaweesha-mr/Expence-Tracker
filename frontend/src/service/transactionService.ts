@@ -58,3 +58,14 @@ export const getTransactionbyId = async (id:string) => {
         console.log(error);
     }
 }
+
+
+export const updateTransaction = async (id:string, data:AddTransactionFormProps) => {
+    try{
+        const response = await transactionService.put(`/${id}`, data);
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}
