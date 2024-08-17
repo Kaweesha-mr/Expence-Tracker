@@ -7,19 +7,20 @@ import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select"
-import { addtransaction } from "@/service/transactionService"
+import { addtransaction,deleteTransaction } from "@/service/transactionService"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
-import { Delete, DeleteIcon, LucideDelete } from "lucide-react"
+import { Delete, DeleteIcon, LucideDelete, Trash } from "lucide-react"
 
 
 
 type ResponsiveFormProps = {
     children: ReactNode;
     title: string;
+    index: string;
 }
 
-export default function ResponsiveForm({ children, title }: ResponsiveFormProps) {
+export default function ResponsiveForm({ children, title,index }: ResponsiveFormProps) {
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [date, setDate] = useState<string>();
@@ -51,7 +52,31 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
 
 
     const handleDelete = () => {
-        console.log("Delete Transaction")
+        
+        deleteTransaction(index).then(async (res) => {
+            const response = await res;
+
+            console.log(response)
+
+            if (response) {
+
+                toast({
+                    className: "bg-red-500",
+                    variant: "default",
+                    title: `Transaction Deleted`,
+                    duration: 2000
+                });
+
+                //wait 1s
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500)
+
+                
+
+
+            }
+        })
     }
 
 
@@ -136,7 +161,11 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <DeleteIcon/>
+                                    {
+                                        title !== 'New' && (
+                                            <DeleteIcon/>
+                                        )
+                                    }
                                 </div>
                             </div>
                             <DrawerFooter>
@@ -161,9 +190,11 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                             <DialogHeader>
                                 <DialogTitle>{`${title} Transaction`}</DialogTitle>
                                 <DialogDescription>Enter Amount in LKR</DialogDescription>
+                                {index}
                             </DialogHeader>
                             <div className="m-5">
                                 <div className="w-full grid gap-4">
+                                
                                     <Input placeholder="Enter Title" value={name} onChange={(e) => setName(e.target.value)} />
                                     <Input className="m-2 w-full" type="number" placeholder="Amount" value={amount ?? 0} onChange={(e) => setAmount(parseInt(e.target.value))} />
                                     <Input type="date" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
@@ -176,7 +207,13 @@ export default function ResponsiveForm({ children, title }: ResponsiveFormProps)
                                             <SelectItem className="text-red-600" value="expense">Expense</SelectItem>
                                         </SelectContent>
                                     </Select>
-                                    <Delete className="cursor-pointer" onClick={handleDelete}/>
+
+                                    {
+                                        title !== 'New' && (
+                                            <Trash className=" text-red-600 cursor-pointer" onClick={handleDelete}/>
+                                        )
+                                    }
+                                    
                                 </div>
                             </div>
                             <DialogFooter>

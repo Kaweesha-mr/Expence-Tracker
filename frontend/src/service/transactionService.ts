@@ -38,3 +38,13 @@ export const getTransactions = async () => {
         console.log(error);
     }
 }
+
+export const deleteTransaction = async (id:string) => {
+    try{
+        const response = await transactionService.delete(`/${id}`);
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}

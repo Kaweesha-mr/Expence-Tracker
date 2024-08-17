@@ -27,20 +27,22 @@ export default function Transactions() {
         console.log("Update Transaction")
     }
 
-    
+
 
     return (
         <div className="grid grid-cols-1">
 
-            <ResponsiveForm title="Update" handleSubmit={handleUpdate}>
-                {
-                    data.map((transaction, index) => {
-                        return (
-                            <TransactionCard  key={transaction._id} Title={transaction.name} Date={transaction.createdAt} Amount={transaction.amount} />
-                        )
-                    })
-                }
-            </ResponsiveForm>
+
+            {
+                data.map((transaction, index) => {
+                    return (
+                        <ResponsiveForm key={index} index={transaction._id} title="Update">
+                            <TransactionCard  Title={transaction.name} Date={transaction.createdAt} Amount={transaction.amount} />
+                        </ResponsiveForm>
+                    )
+                })
+            }
+
 
         </div>
     )
