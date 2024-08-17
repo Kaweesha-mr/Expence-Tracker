@@ -8,9 +8,9 @@ router.get('/',authMiddleware,transactionController.getAllTransactions);
 router.get('/latest',authMiddleware,transactionController.get4Transactions);
 router.get('/one/:id',transactionController.getTransactionsbyId);
 router.post('/',transactionController.addTransaction);
-router.put('/:id',transactionController.updateTransaction);
-router.get('/sum/:id',transactionController.getSumOfIncomeTransactionsByUserId);
-router.get('/sum/:id',transactionController.getSumOfExpenseTransactionsByUserId);
-router.delete('/:id',transactionController.deleteTransactions);
+router.put('/:id',authMiddleware,transactionController.updateTransaction);
+router.get('/sumIncome',authMiddleware,transactionController.getSumOfIncomeTransactionsByUserId);
+router.get('/sumExpense',authMiddleware,transactionController.getSumOfExpenseTransactionsByUserId);
+router.delete('/:id',authMiddleware,transactionController.deleteTransactions);
 
 module.exports = router;

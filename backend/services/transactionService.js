@@ -27,42 +27,61 @@ const deleteTransaction = async(id) => {
     return await Transaction.findByIdAndDelete(id);
 }
 
-const getSumOfIncomeTransactionsByUserId = async(UserId) => {
-    return await Transaction.aggregate([
-        {
-            $match: {
-                userId: UserId,
-                type: 'income'
-            }
-        },
-        {
-            $group: {
-                _id: null,
-                total: {
-                    $sum: '$amount'
+const getSumOfIncomeTransactionsByUserId = async (UserId) => {
+    try {
+        // Since userId is a string, no need to cast to ObjectId
+        const result = await Transaction.aggregate([
+            {
+                $match: {
+                    userId: UserId, // Ensure UserId is a string
+                    type: 'income'
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    total: {
+                        $sum: '$amount'
+                    }
                 }
             }
-        }
-    ]);
+        ]);
+
+        console.log("Result:", result);
+
+        return result.length > 0 ? result[0].total : 0;
+    } catch (error) {
+        console.error("Error fetching sum of income transactions:", error);
+        throw error;
+    }
 }
 
-const getSumOfExpenseTransactionsByUserId = async(UserId) => {
-    return await Transaction.aggregate([
-        {
-            $match: {
-                userId: UserId,
-                type: 'expense'
-            }
-        },
-        {
-            $group: {
-                _id: null,
-                total: {
-                    $sum: '$amount'
+
+const getSumOfExpenseTransactionsByUserId = async (UserId) => {
+    try {
+        // Since userId is a string, no need to cast to ObjectId
+        const result = await Transaction.aggregate([
+            {
+                $match: {
+                    userId: UserId, // Ensure UserId is a string
+                    type: 'expense'
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    total: {
+                        $sum: '$amount'
+                    }
                 }
             }
-        }
-    ]);
+        ]);
+
+        return result.length > 0 ? result[0].total : 0;
+    } catch (error) {
+        console.error("Error fetching sum of expense transactions:", error);
+        throw error;
+    }
 }
 
 

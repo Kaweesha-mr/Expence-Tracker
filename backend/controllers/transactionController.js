@@ -98,22 +98,24 @@ const recipies = require('../services/transactionService');
     }
 
     const getSumOfIncomeTransactionsByUserId = async (req,res) => {
+        const userId = req.user._id;
+
         try{
-            const sum = await recipies.getSumOfIncomeTransactionsByUserId(req.params.id);
+            const sum = await recipies.getSumOfIncomeTransactionsByUserId(userId);
             
-            if(!sum){
-                return res.status(404).json({message: "No sum found"});
-            }
             return res.status(200).json(sum);
         }
         catch(err){
+            console.log(err);
             return res.status(500).json({message: err.message});
         }
     }
 
     const getSumOfExpenseTransactionsByUserId = async (req,res) => {
+        const userId = req.user._id;
         try{
-            const sum = await recipies.getSumOfExpenseTransactionsByUserId(req.params.id);
+            
+            const sum = await recipies.getSumOfExpenseTransactionsByUserId(userId);
             
             if(!sum){
                 return res.status(404).json({message: "No sum found"});
