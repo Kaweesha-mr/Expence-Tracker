@@ -48,3 +48,13 @@ export const deleteTransaction = async (id:string) => {
         console.log(error);
     }
 }
+
+export const getTransactionbyId = async (id:string) => {
+    try{
+        const response = await transactionService.get(`one/${id}`);
+        return response.data;
+    }
+    catch(error){
+        console.log(error);
+    }
+}

@@ -7,7 +7,7 @@ import React, { ReactNode, useEffect, useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./ui/select"
-import { addtransaction,deleteTransaction } from "@/service/transactionService"
+import { addtransaction,deleteTransaction,getTransactionbyId} from "@/service/transactionService"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation";
 import { Delete, DeleteIcon, LucideDelete, Trash } from "lucide-react"
@@ -49,6 +49,26 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+
+    useEffect(()=> {
+        if(title !== 'New'){
+            const fetchData = async () => {
+                try{
+                    const response = await getTransactionbyId(index);
+                    setName(response.name);
+                    setAmount(response.amount);
+                    setType(response.type);
+                    setDate(response.date);
+
+                }
+                catch(error){
+                    console.log(error)
+                }
+            }
+            fetchData();
+        }
+    })
 
 
     const handleDelete = () => {
@@ -154,7 +174,7 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
                                     <Input type="date" className="mb-4" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
                                         <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"}`}>
-                                            <SelectValue placeholder="Type" />
+                                            <SelectValue placeholder={type == null?'Type':type} />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem className="text-green-600" value="income">Income</SelectItem>
@@ -200,7 +220,7 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
                                     <Input type="date" placeholder="Date and time" value={date} onChange={(e) => setDate(e.target.value)} />
                                     <Select onValueChange={(newValue) => setType(newValue)}>
                                         <SelectTrigger className={`w-[180px] ${type === "income" ? "text-green-600" : type === "expense" ? "text-red-600" : "text-black"}`}>
-                                            <SelectValue placeholder="Type" />
+                                        <SelectValue placeholder={type == null?'Type':type} />
                                         </SelectTrigger>
                                         <SelectContent>
                                             <SelectItem className="text-green-600" value="income">Income</SelectItem>
