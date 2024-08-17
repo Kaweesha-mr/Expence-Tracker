@@ -33,5 +33,5 @@ jobs:
             run: docker run -d -p 3002:3002 --name nodejs-app-container \
                   -e MONGODB_URI=${{ secrets.MONGODB_URI }} \
                   -e PORT=3002 \
-                  -e jwt_secret=${{ secrets.jwt_secret }} \
+                  -e jwt_secret=${{ secrets.JWT_SECRET }} \
                   kaweeshamr/nodejs-app:latest
