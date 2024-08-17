@@ -234,7 +234,6 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
                             <DialogHeader>
                                 <DialogTitle>{`${title} Transaction`}</DialogTitle>
                                 <DialogDescription>Enter Amount in LKR</DialogDescription>
-                                {index}
                             </DialogHeader>
                             <div className="m-5">
                                 <div className="w-full grid gap-4">
