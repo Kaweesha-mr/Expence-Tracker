@@ -183,7 +183,7 @@ export default function ResponsiveForm({ children, title,index }: ResponsiveForm
                                     </Select>
                                     {
                                         title !== 'New' && (
-                                            <DeleteIcon/>
+                                            <Trash/>
                                         )
                                     }
                                 </div>
