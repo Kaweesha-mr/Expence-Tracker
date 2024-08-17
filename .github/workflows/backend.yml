@@ -29,5 +29,5 @@ jobs:
           - name: pull image from docker hub
             run: docker pull kaweeshamr/nodejs-app:latest
           - name: run container
-            run: docker run -d -p 3002:3002 --name nodejs-app-container -e MONGODB_URI=${{ secrets.MONGODB_URI }} -e PORT=3002 -e jwt_secret=${{ secrets.jwt_secret }} kaweeshamr/nodejs-app:latest
+            run: docker run -d -p 3002:3002 --name nodejs-app-container -e MONGODB_URI="${{ secrets.DOCKER_USERNAME }}" -e PORT=3002 -e jwt_secret="${{ secrets.jwt_secret }}" kaweeshamr/nodejs-app:latest
         
