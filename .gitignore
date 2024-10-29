@@ -5,8 +5,7 @@
 /.pnp
 
 
-# testing
-/coverage
+
 
 # next.js
 /.next/
